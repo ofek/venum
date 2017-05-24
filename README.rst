@@ -19,19 +19,16 @@ venum
 -----
 
 venum provides an Enum that is actually just a namedtuple, but easier to create.
-This means an Enum can be created during program execution and members are truly
-immutable (can't dynamically add new ones). Also, this saves a bit of space over
-the stdlib's Enum.
+This means an Enum doesn't have to be defined before program execution (similar
+to the functional API) and members are truly immutable (can't dynamically add
+new ones). Also, this saves a bit of memory over the stdlib's Enum.
+
+Usage
+-----
 
 .. code-block:: python
 
     >>> from venum import Enum
-    >>>
-    >>> sample = Enum(('BLUE', 1), ('RED', 2))
-    >>> sample
-    Enum(BLUE=1, RED=2)
-    >>> sample.BLUE
-    1
     >>>
     >>> ContentTypes = Enum(
     ...     ('JSON', 'application/json; charset=utf-8'),
@@ -46,6 +43,49 @@ the stdlib's Enum.
     ... )
     >>> ContentTypes
     ContentTypes(JSON='application/json; charset=UTF-8', HTML='text/html; charset=utf-8', JS='text/javascript; charset=utf-8', XML='application/xml', TEXT='text/plain; charset=utf-8', JPEG='image/jpeg', PNG='image/png', YAML='application/x-yaml')
+
+Attribute lookup
+^^^^^^^^^^^^^^^^
+
+No need for `.value`.
+
+.. code-block:: python
+
+    >>> from venum import Enum
+    >>>
+    >>> sample = Enum(('BLUE', 1), ('RED', 2))
+    >>> sample
+    Enum(BLUE=1, RED=2)
+    >>> sample.BLUE
+    1
+
+Comparison by value
+^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+    >>> from venum import Enum
+    >>>
+    >>> sample = Enum(('SPADES', 1))
+    >>> sample.SPADES == 1
+    True
+
+Memory-efficiency
+^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+    >>> from sys import getsizeof
+    >>> from enum import Enum as StdEnum
+    >>> from venum import Enum
+    >>>
+    >>> class SomeEnum(StdEnum):
+    ...     BLUE = 3
+    >>>
+    >>> getsizeof(SomeEnum)
+    1056
+    >>> getsizeof(Enum(('BLUE', 3)))
+    56
 
 Installation
 ------------
