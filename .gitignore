@@ -3,7 +3,7 @@
 /.cache
 /.idea
 /.coverage
-/uniqueue.egg-info
+/venum.egg-info
 /build
 /dist
 /docs/build
