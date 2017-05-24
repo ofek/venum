@@ -1,6 +1,6 @@
 from collections import namedtuple
 
 
-def Enum(*args, name=None):
+def Enum(*args, **kwargs):
     fields, values = zip(*args)
-    return namedtuple(name or 'Enum', fields)(*values)
+    return namedtuple(kwargs.get('name') or 'Enum', fields)(*values)
