@@ -32,3 +32,11 @@ class TestEnum:
 
         with pytest.raises(AttributeError):
             enum.PI = 3.14
+
+    def test_name(self):
+        enum = Enum(*[(key, DATA[key]) for key in DATA], name='DATA')
+        assert str(enum)[:4] == 'DATA'
+
+    def test_name_default(self):
+        enum = Enum(*[(key, DATA[key]) for key in DATA])
+        assert str(enum)[:4] == 'Enum'
