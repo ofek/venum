@@ -47,7 +47,7 @@ Usage
 Attribute lookup
 ^^^^^^^^^^^^^^^^
 
-No need for `.value`.
+No need for ``.value``.
 
 .. code-block:: python
 
