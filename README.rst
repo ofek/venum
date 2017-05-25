@@ -73,6 +73,12 @@ Comparison by value
 Memory-efficiency
 ^^^^^^^^^^^^^^^^^
 
+*This example was run on a 64-bit machine.*
+
+Note that stdlib's Enum by itself uses 1056 bytes with each member requiring
+56 bytes, whereas namedtuple Enum uses just 48 bytes with each member requiring
+only 16 bytes.
+
 .. code-block:: python
 
     >>> from sys import getsizeof
