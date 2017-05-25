@@ -76,7 +76,7 @@ Memory-efficiency
 *This example was run on a 64-bit machine.*
 
 Note that stdlib's Enum by itself uses 1056 bytes with each member requiring
-56 bytes, whereas namedtuple Enum uses just 48 bytes with each member requiring
+56 bytes, whereas namedtuple Enum uses 888 bytes with each member requiring
 only 16 bytes.
 
 .. code-block:: python
@@ -88,10 +88,10 @@ only 16 bytes.
     >>> class SomeEnum(StdEnum):
     ...     BLUE = 3
     >>>
-    >>> getsizeof(SomeEnum)
+    >>> getsizeof(SomeEnum.__class__)
     1056
-    >>> getsizeof(Enum(('BLUE', 3)))
-    56
+    >>> getsizeof(Enum(('BLUE', 3)).__class__)
+    888
 
 Installation
 ------------
